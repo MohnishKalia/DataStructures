@@ -25,15 +25,17 @@ public class EmailMerge {
 		while (people.hasNextLine())
 			persons.add(people.nextLine());
 
-		for (String person : persons) {
-			String[] info = person.split(" ");
-			String temp = message;
-			temp = temp.replaceAll("<<N>>", info[0]);
-			temp = temp.replaceAll("<<A>>", info[1]);
-			temp = temp.replaceAll("<<G>>", info[2]);
-			System.out.println(temp);
-		}
+		for (String person : persons)
+			printPersonalizedMessage(message, person);
 
 	}
 
+	private static void printPersonalizedMessage(String template, String personalInformation) {
+		String[] info = personalInformation.split(" ");
+		template = template.replaceAll("<<N>>", info[0]);
+		template = template.replaceAll("<<A>>", info[1]);
+		template = template.replaceAll("<<G>>", info[2]);
+		System.out.println(template);
+		//Save message to local storage here
+	}
 }
