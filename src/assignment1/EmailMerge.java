@@ -7,13 +7,7 @@ import java.io.*;
  * @author Mohnish Kalia
  */
 public class EmailMerge {
-	/**
-	 * 
-	 * @param args
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 */
-	public static void main(String[] args) throws FileNotFoundException, IOException {
+	public static void main(String[] args) throws IOException, FileNotFoundException {
 		List<String> persons = new ArrayList<String>();
 		String message = "";
 		try (Scanner templateScanner = new Scanner(new File("src/assignment1/template.txt"));
