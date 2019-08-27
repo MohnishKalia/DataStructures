@@ -29,7 +29,7 @@ public class EmailMerge {
 	}
 
 	private static void printPersonalizedMessage(List<String> message, String personalInformation)
-			throws FileNotFoundException, IOException {
+			throws IOException, FileNotFoundException {
 		List<String> template = new ArrayList<String>();
 		for (String line : message)
 			template.add(line);
@@ -43,13 +43,17 @@ public class EmailMerge {
 
 		System.out.println(email);
 		// Save message to local storage here
+		saveMessage(email, info[0]);
+	}
+
+	private static void saveMessage(String desiredEmail, String name) throws IOException, FileNotFoundException {
 		String path = "src/assignment1/%s";
-		File file = new File(String.format(path + ".txt", info[0]));
+		File file = new File(String.format(path + ".txt", name));
 		if (!file.createNewFile())
 			for (int i = 1; !file.createNewFile(); i++)
-				file = new File(String.format(path + "-" + i + ".txt", info[0]));
+				file = new File(String.format(path + "-" + i + ".txt", name));
 		try (PrintWriter output = new PrintWriter(new FileOutputStream(file))) {
-			output.println(email);
+			output.println(desiredEmail);
 		}
 	}
 }
