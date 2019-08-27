@@ -5,7 +5,7 @@ import java.io.*;
 
 public class EmailMerge {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		/*
 		 * 1 line of people.txt includes a person's info Store in string[] and iterate
@@ -13,29 +13,40 @@ public class EmailMerge {
 		 * message using message template and .replaceAll
 		 */
 
-		ArrayList<String> persons = new ArrayList<String>();
-		String message = "";
-		Scanner template = new Scanner(new File("src/assignment1/template.txt"));
-		Scanner people = new Scanner(new File("src/assignment1/people.txt"));
+		List<String> persons = new ArrayList<String>();
+		List<String> message = new ArrayList<String>();
+		try (Scanner template = new Scanner(new File("src/assignment1/template.txt"));
+				Scanner people = new Scanner(new File("src/assignment1/people.txt"))) {
+			while (template.hasNextLine())
+				message.add(template.nextLine() + "\n");
 
-		while (template.hasNextLine())
-			message += template.nextLine();
-		System.out.println(message);
+			while (people.hasNextLine())
+				persons.add(people.nextLine());
 
-		while (people.hasNextLine())
-			persons.add(people.nextLine());
-
-		for (String person : persons)
-			printPersonalizedMessage(message, person);
-
+			for (String person : persons)
+				printPersonalizedMessage(message, person);
+		}
 	}
 
-	private static void printPersonalizedMessage(String template, String personalInformation) {
+	private static void printPersonalizedMessage(List<String> message, String personalInformation)
+			throws FileNotFoundException, IOException {
+		List<String> template = new ArrayList<String>();
+		for (String line : message)
+			template.add(line);
 		String[] info = personalInformation.split(" ");
-		template = template.replaceAll("<<N>>", info[0]);
-		template = template.replaceAll("<<A>>", info[1]);
-		template = template.replaceAll("<<G>>", info[2]);
-		System.out.println(template);
-		//Save message to local storage here
+		for (int i = 0; i < template.size(); i++)
+			template.set(i, template.get(i).replaceAll("<<N>>", info[0]).replaceAll("<<A>>", info[1])
+					.replaceAll("<<G>>", info[2]));
+		String email = "";
+		for (String line : template)
+			email += line;
+
+		System.out.println(email);
+		// Save message to local storage here
+		File file = new File(String.format("src/assignment1/%s.txt", info[0]));
+		if (file.createNewFile())
+			try (PrintWriter output = new PrintWriter(new FileOutputStream(file))) {
+				output.println(email);
+			}
 	}
 }
