@@ -43,10 +43,13 @@ public class EmailMerge {
 
 		System.out.println(email);
 		// Save message to local storage here
-		File file = new File(String.format("src/assignment1/%s.txt", info[0]));
-		if (file.createNewFile())
-			try (PrintWriter output = new PrintWriter(new FileOutputStream(file))) {
-				output.println(email);
-			}
+		String path = "src/assignment1/%s";
+		File file = new File(String.format(path + ".txt", info[0]));
+		if (!file.createNewFile())
+			for (int i = 1; !file.createNewFile(); i++)
+				file = new File(String.format(path + "-" + i + ".txt", info[0]));
+		try (PrintWriter output = new PrintWriter(new FileOutputStream(file))) {
+			output.println(email);
+		}
 	}
 }
