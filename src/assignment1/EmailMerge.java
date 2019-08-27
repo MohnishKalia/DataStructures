@@ -1,7 +1,14 @@
 package assignment1;
 
-import java.util.*;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 /**
  * @author Mohnish Kalia
@@ -28,8 +35,7 @@ public class EmailMerge {
 	 * information.
 	 * 
 	 * @param template            The template message used for the desired email
-	 *                            format (Name is <<N>>, Age is <<A>>, Gender is
-	 *                            <<G>>)
+	 *                            format
 	 * @param personalInformation A line of text that includes the Name, Age, and
 	 *                            Gender of a person, respectively, separated by
 	 *                            spaces
