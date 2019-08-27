@@ -3,49 +3,61 @@ package assignment1;
 import java.util.*;
 import java.io.*;
 
+/**
+ * @author Mohnish Kalia
+ */
 public class EmailMerge {
-
+	/**
+	 * 
+	 * @param args
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
-		/*
-		 * 1 line of people.txt includes a person's info Store in string[] and iterate
-		 * {Name} {Age} {Gender} As a result, .split(" ") and 0=N, 1=A, 2=G Then send
-		 * message using message template and .replaceAll
-		 */
-
 		List<String> persons = new ArrayList<String>();
-		List<String> message = new ArrayList<String>();
-		try (Scanner template = new Scanner(new File("src/assignment1/template.txt"));
-				Scanner people = new Scanner(new File("src/assignment1/people.txt"))) {
-			while (template.hasNextLine())
-				message.add(template.nextLine() + "\n");
+		String message = "";
+		try (Scanner templateScanner = new Scanner(new File("src/assignment1/template.txt"));
+				Scanner peopleScanner = new Scanner(new File("src/assignment1/people.txt"))) {
+			while (templateScanner.hasNextLine())
+				message += templateScanner.nextLine() + "\n";
 
-			while (people.hasNextLine())
-				persons.add(people.nextLine());
+			while (peopleScanner.hasNextLine())
+				persons.add(peopleScanner.nextLine());
 
 			for (String person : persons)
 				printPersonalizedMessage(message, person);
 		}
 	}
 
-	private static void printPersonalizedMessage(List<String> message, String personalInformation)
+	/**
+	 * Replaces the placeholders within a standard template email with personalized
+	 * information.
+	 * 
+	 * @param template            The template message used for the desired email
+	 *                            format (Name is <<N>>, Age is <<A>>, Gender is
+	 *                            <<G>>)
+	 * @param personalInformation A line of text that includes the Name, Age, and
+	 *                            Gender of a person, respectively, separated by
+	 *                            spaces
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 */
+	private static void printPersonalizedMessage(String template, String personalInformation)
 			throws IOException, FileNotFoundException {
-		List<String> template = new ArrayList<String>();
-		for (String line : message)
-			template.add(line);
 		String[] info = personalInformation.split(" ");
-		for (int i = 0; i < template.size(); i++)
-			template.set(i, template.get(i).replaceAll("<<N>>", info[0]).replaceAll("<<A>>", info[1])
-					.replaceAll("<<G>>", info[2]));
-		String email = "";
-		for (String line : template)
-			email += line;
-
-		System.out.println(email);
+		template = template.replaceAll("<<N>>", info[0]).replaceAll("<<A>>", info[1]).replaceAll("<<G>>", info[2]);
 		// Save message to local storage here
-		saveMessage(email, info[0]);
+		saveMessage(template, info[0]);
 	}
 
+	/**
+	 * Saves a personalized email to local storage.
+	 * 
+	 * @param desiredEmail Finalized text to be saved within a file
+	 * @param name         The name of the recipient
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 */
 	private static void saveMessage(String desiredEmail, String name) throws IOException, FileNotFoundException {
 		String path = "src/assignment1/%s";
 		File file = new File(String.format(path + ".txt", name));
