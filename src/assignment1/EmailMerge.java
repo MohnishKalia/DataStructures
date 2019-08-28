@@ -23,11 +23,11 @@ public class EmailMerge {
 					line -> line.replaceAll("<<N>>", info[0]).replaceAll("<<A>>", info[1]).replaceAll("<<G>>", info[2]))
 					.collect(Collectors.toList());
 
-			String dir = "src/assignment1/%s";
-			Path path = Paths.get(String.format(dir + ".txt", info[0]));
+			String dir = "src/assignment1/%s%s.txt";
+			Path path = Paths.get(String.format(dir, info[0], ""));
 			if (Files.exists(path))
 				for (int i = 1; Files.exists(path); i++)
-					path = Paths.get(String.format(dir + "-" + i + ".txt", info[0]));
+					path = Paths.get(String.format(dir, info[0], "-" + i));
 
 			Files.write(path, email);
 		}
