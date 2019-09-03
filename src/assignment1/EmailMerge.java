@@ -35,7 +35,7 @@ public class EmailMerge {
 					.replaceAll("<<G>>", info[2]))
 					.collect(Collectors.toList());
 
-			String dir = info[0} + "%s.txt"; // template format string for filename
+			String dir = info[0] + "%s.txt"; // template format string for filename
 			Path path = Paths.get(String.format(dir, "")); // generates path with just the name (ex."John.txt")
 
 			// loop to check if there are any file collisions, replacing the standard path
