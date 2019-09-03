@@ -7,11 +7,13 @@ import java.nio.file.Paths;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 /**
  * Generates a set of emails with personalized information inserted. 
  * Requires a people.txt and template.txt file within the same directory level as this program. 
  * Resulting emails are saved within the same directory level as text (.txt) files.
  * Uses standard duplicate naming conventions.
+ *
  * @author Mohnish Kalia
  */
 public class EmailMerge {
@@ -33,14 +35,14 @@ public class EmailMerge {
 					.replaceAll("<<G>>", info[2]))
 					.collect(Collectors.toList());
 
-			String dir = "%s%s.txt"; // template format string for filename
-			Path path = Paths.get(String.format(dir, info[0], "")); // generates path with just the name (ex."John.txt")
+			String dir = info[0} + "%s.txt"; // template format string for filename
+			Path path = Paths.get(String.format(dir, "")); // generates path with just the name (ex."John.txt")
 
 			// loop to check if there are any file collisions, replacing the standard path
 			// with an indexed path (ex. "John-2.txt")
 			if (Files.exists(path))
 				for (int i = 1; Files.exists(path); i++)
-					path = Paths.get(String.format(dir, info[0], "-" + i));
+					path = Paths.get(String.format(dir, "-" + i));
 
 			Files.write(path, email); // writes the text lines to the now cleared filepath
 		}
