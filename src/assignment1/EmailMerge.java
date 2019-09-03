@@ -8,6 +8,10 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 /**
+ * Generates a set of emails with personalized information inserted. 
+ * Requires a people.txt and template.txt file within the same directory level as this program. 
+ * Resulting emails are saved within the same directory level as text (.txt) files.
+ * Uses standard duplicate naming conventions.
  * @author Mohnish Kalia
  */
 public class EmailMerge {
