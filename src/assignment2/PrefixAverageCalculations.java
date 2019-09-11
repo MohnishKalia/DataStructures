@@ -24,8 +24,8 @@ public class PrefixAverageCalculations {
         List<String> dataLines = new ArrayList<String>();
         Random gen = new Random();
 
-        int min = 50000, max = 300000;
-        for (int i = 0; i < 5; i++) {
+        int min = 0, max = 300000;
+        for (int i = 0; i < 10; i++) {
             long[] data = computeTimes(min + gen.nextInt(max - min + 1));
             dataLines.add(String.format(dataFormat, data[0], data[1], data[2]));
         }
