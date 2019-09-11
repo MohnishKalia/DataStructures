@@ -7,10 +7,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Stream;
+import java.util.Random;
+
 
 /**
  * This application compares the time complexities for two Prefix Average
@@ -23,19 +22,14 @@ public class PrefixAverageCalculations {
     public static void main(String[] args) throws IOException, InterruptedException {
         String dataFormat = "%d,%d,%d";
         List<String> dataLines = new ArrayList<String>();
+        Random gen = new Random();
 
-        try (Scanner input = new Scanner(System.in)) {
-            boolean flag = true;
-            while (flag) {
-                System.out.println("What is the input size you wish to test?");
-                long[] data = computeTimes(input.nextInt());
-                dataLines.add(String.format(dataFormat, data[0], data[1], data[2]));
-                System.out.println("Continue? y : n");
-                input.nextLine();
-                flag = input.next().equalsIgnoreCase("y");
-            }
-            Files.write(Paths.get("src/assignment2/times.csv"), dataLines, StandardOpenOption.APPEND);
+        int min = 50000, max = 300000;
+        for (int i = 0; i < 5; i++) {
+            long[] data = computeTimes(min + gen.nextInt(max - min + 1));
+            dataLines.add(String.format(dataFormat, data[0], data[1], data[2]));
         }
+        Files.write(Paths.get("src/assignment2/times.csv"), dataLines, StandardOpenOption.APPEND);
     }
 
     /**
