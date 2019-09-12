@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 /**
  * This application compares the time complexities for two Prefix Average
  * calculation algorithms and exports the data to a times.csv file within the
@@ -20,20 +19,23 @@ import java.util.Random;
  */
 public class PrefixAverageCalculations {
     public static void main(String[] args) throws IOException, InterruptedException {
-        String dataFormat = "%d,%d,%d";
+        String dataFormat = "%d,%d,%d"; // format for csv data
         List<String> dataLines = new ArrayList<String>();
         Random gen = new Random();
 
         int min = 0, max = 300000;
         for (int i = 0; i < 10; i++) {
             long[] data = computeTimes(min + gen.nextInt(max - min + 1));
+            // create 10 data points by using random input size [0-300000]
             dataLines.add(String.format(dataFormat, data[0], data[1], data[2]));
+            // [inputSize, alg 1 time, alg 2 time]
         }
+        // write to the csv file
         Files.write(Paths.get("src/assignment2/times.csv"), dataLines, StandardOpenOption.APPEND);
     }
 
     /**
-     * Computes the time of the processed algorithms and return the data
+     * Computes the time of the processed algorithms and returns the resulting data
      *
      * @param inputSize the desired value of inputs
      * @return a long array with 3 values: the input size, time for algorithm 1, and
@@ -43,9 +45,9 @@ public class PrefixAverageCalculations {
         double[] values = new double[inputSize];
         for (int i = 0; i < values.length; i++)
             values[i] = Math.random() * 50;
-
+        // create a double array with length as input size and fill with random doubles [0-50)
         long[] data = new long[3];
-        long before, after;
+        long before, after; // data format initialization
         data[0] = inputSize;
 
         before = System.currentTimeMillis();
