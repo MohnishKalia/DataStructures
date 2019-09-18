@@ -81,6 +81,8 @@ public class ArrayBoundedStack<T> implements StackInterface<T> {
   public void remove(int n) {
     if (n > topIndex)
       throw new IllegalArgumentException("Specified index is too large for the current stack size.");
+    if (n < 0)
+      throw new IllegalArgumentException("Specified index is negative.");
     for (int i = 0; i < n; i++)
       pop();
   }
