@@ -15,5 +15,7 @@ public class StackDriver {
     test.clear();
     // System.out.println(test.top()); // should throw StackUnderflowException
     // test.clear(); // should throw StackUnderflowException
+    test.push("Successful clear!");
+    System.out.println(test.top()); // expected "Successful clear!"
   }
 }
