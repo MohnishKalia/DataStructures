@@ -73,23 +73,22 @@ public class ArrayBoundedStack<T> implements StackInterface<T> {
   }
 
   /**
-   * Pops a specified number of elements from the stack. Time complexity is O(n)
-   * where n is the input (e.g. if removing 5 elements, time comp. is O(5)).
+   * Pops a specified number of elements from the stack. Time complexity is O(num)
    * 
-   * @param n number of elements to remove
+   * @param num number of elements to remove
    */
-  public void remove(int n) {
-    if (n > topIndex)
+  public void remove(int num) {
+    if (num - 1 > topIndex)
       throw new IllegalArgumentException("Specified index is too large for the current stack size.");
-    if (n < 0)
+    if (num < 0)
       throw new IllegalArgumentException("Specified index is negative.");
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < num; i++)
       pop();
   }
 
   /**
-   * Clears all elements within the stack. Time complexity is O(n) where n is the
-   * # of non-null elements.
+   * Clears all elements within the stack. Time complexity is O(# of non-null
+   * elements)
    */
   public void clear() {
     if (isEmpty())
