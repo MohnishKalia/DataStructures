@@ -37,11 +37,15 @@ public class PFixCLI {
           // Output error message.
           System.out.println("Error in expression - " + error.getMessage());
         }
-        IntSummaryStatistics nums = Stream.of(expression.split(" ")).filter(token -> token.matches("-?\\d+"))
+        IntSummaryStatistics nums = Stream.of(expression.split(" ")).filter(PFixCLI::isInteger)
             .mapToInt(Integer::parseInt).summaryStatistics();
         System.out.println("**STATISTICS**\nLargest Number: " + nums.getMax() + "\nSmallest Number: " + nums.getMin()
             + "\nCount: " + nums.getCount() + "\nAverage: " + nums.getAverage());
       }
     }
+  }
+
+  private static boolean isInteger(String token) {
+    return token.matches("-?\\d+");
   }
 }
