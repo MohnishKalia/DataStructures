@@ -10,7 +10,8 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 import java.util.IntSummaryStatistics;
 
-import inclass.bookFiles.ch02.postfix.*;
+import inclass.bookFiles.ch02.postfix.PostFixEvaluator;
+import inclass.bookFiles.ch02.postfix.PostFixException;
 
 public class PFixCLI {
   public static void main(String[] args) {
