@@ -4,9 +4,9 @@
 // Implements StackInterface using a linked list to hold the elements.
 //-----------------------------------------------------------------------
 
-package inclass.bookFiles.ch02.stacks;
+package ch02.stacks;
 
-import inclass.bookFiles.support.LLNode;
+import support.LLNode;
 
 public class LinkedStack<T> implements StackInterface<T>
 {

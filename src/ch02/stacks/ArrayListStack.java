@@ -4,7 +4,7 @@
 // Implements an unbounded stack using an ArrayList.
 //----------------------------------------------------------------------
 
-package inclass.bookFiles.ch02.stacks;
+package ch02.stacks;
 
 import java.util.ArrayList; 
 

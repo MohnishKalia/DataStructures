@@ -1,6 +1,6 @@
-package inclass.bookFiles.ch02.apps;
+package ch02.apps;
 
-import inclass.bookFiles.ch02.stacks.ArrayBoundedStack;
+import ch02.stacks.ArrayBoundedStack;
 
 public class StackDriver {
   public static void main(String[] args) {

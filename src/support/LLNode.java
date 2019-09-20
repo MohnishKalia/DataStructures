@@ -3,7 +3,7 @@
 //
 // Implements <T> nodes for a Linked List.
 //----------------------------------------------------------------------------
-package inclass.bookFiles.support;
+package support;
 
 public class LLNode<T>
 {

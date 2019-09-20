@@ -4,14 +4,14 @@
 // Evaluates postfix expressions entered by the user.
 // Uses a command line interface.
 //----------------------------------------------------------------------
-package inclass.bookFiles.ch02.apps;
+package ch02.apps;
 
+import java.util.IntSummaryStatistics;
 import java.util.Scanner;
 import java.util.stream.Stream;
-import java.util.IntSummaryStatistics;
 
-import inclass.bookFiles.ch02.postfix.PostFixEvaluator;
-import inclass.bookFiles.ch02.postfix.PostFixException;
+import ch02.postfix.PostFixEvaluator;
+import ch02.postfix.PostFixException;
 
 public class PFixCLI {
   public static void main(String[] args) {

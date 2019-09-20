@@ -7,7 +7,7 @@
 // Clients should not request wait time unless finish time has been set.
 //----------------------------------------------------------------------
 
-package inclass.bookFiles.support;
+package support;
 
 public class Customer
 {

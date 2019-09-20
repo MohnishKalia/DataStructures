@@ -1,4 +1,4 @@
-package inclass.bookFiles.ch02.postfix;
+package ch02.postfix;
 
 public class PostFixException extends RuntimeException
 {

@@ -4,9 +4,9 @@
 // Provides a postfix expression evaluation.
 //----------------------------------------------------------------------
 
-package inclass.bookFiles.ch02.postfix;
+package ch02.postfix;
 
-import inclass.bookFiles.ch02.stacks.*;
+import ch02.stacks.*;
 import java.util.Scanner;
 
 public class PostFixEvaluator {
