@@ -15,32 +15,33 @@ import ch02.postfix.PostFixException;
 
 public class PFixCLI {
   public static void main(String[] args) {
-    Scanner scan = new Scanner(System.in);
+    try (Scanner scan = new Scanner(System.in)) {
 
-    String expression = null; // expression to be evaluated
-    final String STOP = "X"; // indicates end of input
-    int result; // result of evaluation
+      String expression = null; // expression to be evaluated
+      final String STOP = "X"; // indicates end of input
+      int result; // result of evaluation
 
-    while (!STOP.equals(expression)) {
-      // Get next expression to be processed.
-      System.out.print("\nPostfix Expression (" + STOP + " to stop): ");
-      expression = scan.nextLine();
+      while (!STOP.equals(expression)) {
+        // Get next expression to be processed.
+        System.out.print("\nPostfix Expression (" + STOP + " to stop): ");
+        expression = scan.nextLine();
 
-      if (!STOP.equals(expression)) {
-        // Obtain and output result of expression evaluation.
-        try {
-          result = PostFixEvaluator.evaluate(expression);
+        if (!STOP.equals(expression)) {
+          // Obtain and output result of expression evaluation.
+          try {
+            result = PostFixEvaluator.evaluate(expression);
 
-          // Output result.
-          System.out.println("Result = " + result);
-        } catch (PostFixException error) {
-          // Output error message.
-          System.out.println("Error in expression - " + error.getMessage());
+            // Output result.
+            System.out.println("Result = " + result);
+          } catch (PostFixException error) {
+            // Output error message.
+            System.out.println("Error in expression - " + error.getMessage());
+          }
+          IntSummaryStatistics nums = Stream.of(expression.split(" ")).filter(PFixCLI::isInteger)
+              .mapToInt(Integer::parseInt).summaryStatistics();
+          System.out.println("**STATISTICS**\nLargest Number: " + nums.getMax() + "\nSmallest Number: " + nums.getMin()
+              + "\nCount: " + nums.getCount() + "\nAverage: " + nums.getAverage());
         }
-        IntSummaryStatistics nums = Stream.of(expression.split(" ")).filter(PFixCLI::isInteger)
-            .mapToInt(Integer::parseInt).summaryStatistics();
-        System.out.println("**STATISTICS**\nLargest Number: " + nums.getMax() + "\nSmallest Number: " + nums.getMin()
-            + "\nCount: " + nums.getCount() + "\nAverage: " + nums.getAverage());
       }
     }
   }
