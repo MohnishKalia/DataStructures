@@ -68,13 +68,11 @@ public class SList<T> {
     /**
      * Returns if the 2 objects are equal. Time complexity is O(1)
      * 
-     * @param obj object to test
+     * @param other object to test
      */
     @Override
-    public boolean equals(Object obj) {
-        return obj.getClass().isAssignableFrom(this.getClass())
-                ? numElements == ((SList<T>) obj).getNumElements() && obj.toString().equals(this.toString())
-                : false;
+    public boolean equals(Object other) {
+        return other.toString().equals(this.toString());
     }
 
 }
