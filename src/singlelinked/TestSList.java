@@ -3,27 +3,36 @@ package singlelinked;
 public class TestSList {
 
 	public static void main(String[] args) {
-		SList<String> myList = new SList<String>();
-		myList.add("A");
-		myList.add("B");
-		myList.add("C");
-		myList.add("D");
-		myList.add("E");
+		SList<String> myList = new SList<>() {
+			{
+				add("A");
+				add("B");
+				add("C");
+				add("D");
+				add("E");
+			}
+		};
 		System.out.println(myList);
 
-		SList<String> sameList = new SList<String>();
-		sameList.insertLast("E");
-		sameList.insertLast("D");
-		sameList.insertLast("C");
-		sameList.insertLast("B");
-		sameList.insertLast("A");
+		SList<String> sameList = new SList<>() {
+			{
+				insertLast("E");
+				insertLast("D");
+				insertLast("C");
+				insertLast("B");
+				insertLast("A");
+			}
+		};
 		System.out.println(sameList);
 		System.out.println(myList.equals(sameList));
 
-		SList<String> shortList = new SList<>();
-		shortList.add("A");
-		shortList.add("B");
-		shortList.add("C");
+		SList<String> shortList = new SList<>() {
+			{
+				add("A");
+				add("B");
+				add("C");
+			}
+		};
 		System.out.println(shortList);
 		System.out.println(myList.equals(shortList));
 	}
