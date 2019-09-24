@@ -36,7 +36,7 @@ public class SList<T> {
     }
 
     /**
-     * Adds the element to the end of the list. Time complexity is O(1)
+     * Adds the element to the end of the list. Time complexity is O(n)
      * 
      * @param element desired element to add
      */
