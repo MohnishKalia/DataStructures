@@ -32,6 +32,20 @@ public class TestSList {
 		nullCheck.insertLast("Last");
 		System.out.println(nullCheck); // checks to make sure that null can be a valid input
 		System.out.println(myList.equals(nullCheck));
+
+		myList.removeFirst();
+		System.out.println(myList); // should be D-->C-->B-->A
+		myList.remove("D");
+		System.out.println(myList); // should be C-->B-->A, testing to make sure that the first element will get removed
+		myList.remove("B");
+		System.out.println(myList);	// should be C-->A, testing an intermediate element
+
+		sameList.remove("A");
+		System.out.println(sameList); // should be E-->D-->C-->B, testing removal of the final element
+
+		sameList.remove("This should not remove anything");
+		System.out.println(sameList); // should be E-->D-->C-->B, no change
+
 	}
 
 }

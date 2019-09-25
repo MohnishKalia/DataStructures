@@ -53,6 +53,40 @@ public class SList<T> {
         }
     }
 
+    /**
+     * Removes the first element in the SList
+     */
+    public void removeFirst() {
+        list = list.getLink();
+    }
+
+    /**
+     * Removes the first node that matches with the element
+     * 
+     * @param element element to remove from the linked list
+     */
+    public void remove(T element) {
+        LLNode<T> currentNode = list;
+        LLNode<T> before = null;
+        if (currentNode.getInfo().equals(element))
+            removeFirst();
+        else
+            while (currentNode != null) {
+                if (currentNode.getInfo().equals(element)) {
+                    // set the two neighbors to be linked
+                    // E -> F -> C
+                    // E.setlink(C)
+                    // F = null
+                    before.setLink(currentNode.getLink());
+                    currentNode = null;
+                    return;
+                }
+                before = currentNode;
+                currentNode = currentNode.getLink(); // search for the node with no links (should be at the end)
+            }
+
+    }
+
     public String toString() {
         LLNode<T> node = list;
         String result = "";
@@ -72,6 +106,10 @@ public class SList<T> {
      */
     @Override
     public boolean equals(Object other) {
+        if (null == other)
+            return false;
+        if (this == other)
+            return true;
         return other.toString().equals(this.toString());
     }
 
