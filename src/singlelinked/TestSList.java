@@ -25,6 +25,13 @@ public class TestSList {
 		IntStream.rangeClosed('A', 'C').forEach(c -> shortList.add("" + (char) c));
 		System.out.println(shortList);
 		System.out.println(myList.equals(shortList));
+		
+		SList<String> nullCheck = new SList<>();
+		nullCheck.add(null);
+		nullCheck.add("First");
+		nullCheck.insertLast("Last");
+		System.out.println(nullCheck);
+		System.out.println(myList.equals(nullCheck));
 	}
 
 }

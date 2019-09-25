@@ -42,12 +42,12 @@ public class SList<T> {
      */
     public void insertLast(T element) {
         if (list == null)
-            add(element);
+            add(element); // use the standard implementation if there are no other nodes
         else {
             LLNode<T> newNode = new LLNode<T>(element);
             LLNode<T> deepestNode = list;
             while (deepestNode.getLink() != null)
-                deepestNode = deepestNode.getLink();
+                deepestNode = deepestNode.getLink(); // search for the node with no links (should be at the end)
             deepestNode.setLink(newNode);
             numElements++;
         }
