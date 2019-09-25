@@ -19,18 +19,18 @@ public class TestSList {
 			}
 		}; // "double brace" initialization for sameList
 		System.out.println(sameList);
-		System.out.println(myList.equals(sameList));
+		System.out.println(myList.equals(sameList)); // should be true because its the same list but with the inverse order (using inverse method)
 
 		SList<String> shortList = new SList<>();
 		IntStream.rangeClosed('A', 'C').forEach(c -> shortList.add("" + (char) c));
 		System.out.println(shortList);
-		System.out.println(myList.equals(shortList));
+		System.out.println(myList.equals(shortList)); // false because the list does not have the same elements or the same # of elements
 		
 		SList<String> nullCheck = new SList<>();
 		nullCheck.add(null);
 		nullCheck.add("First");
 		nullCheck.insertLast("Last");
-		System.out.println(nullCheck);
+		System.out.println(nullCheck); // checks to make sure that null can be a valid input
 		System.out.println(myList.equals(nullCheck));
 	}
 
