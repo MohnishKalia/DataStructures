@@ -54,7 +54,7 @@ public class SList<T> {
     }
 
     /**
-     * Removes the first element in the SList
+     * Removes the first element in the SList. Time complexity is constant time O(1)
      */
     public void removeFirst() {
         list = list.getLink();
@@ -62,7 +62,7 @@ public class SList<T> {
     }
 
     /**
-     * Removes the first node that matches with the element
+     * Removes the first node that matches with the element. Time complexity is based on where the first occurance of an element is found [best is O(1), worst is O(n)]
      * 
      * @param element element to remove from the linked list
      */
