@@ -58,6 +58,7 @@ public class SList<T> {
      */
     public void removeFirst() {
         list = list.getLink();
+        numElements--;
     }
 
     /**
@@ -79,12 +80,12 @@ public class SList<T> {
                     // F = null
                     before.setLink(currentNode.getLink());
                     currentNode = null;
+                    numElements--;
                     return;
                 }
                 before = currentNode;
                 currentNode = currentNode.getLink(); // search for the node with no links (should be at the end)
             }
-
     }
 
     public String toString() {

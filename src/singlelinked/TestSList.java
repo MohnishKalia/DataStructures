@@ -46,6 +46,16 @@ public class TestSList {
 		sameList.remove("This should not remove anything");
 		System.out.println(sameList); // should be E-->D-->C-->B, no change
 
+		System.out.println(sameList.equals(null)); // returns false because null cannot be equal to an object
+		System.out.println(sameList.equals(sameList)); // returns true because of reflection
+		System.out.println(sameList.equals(new SList<String>() {
+			{
+				insertLast("E");
+				insertLast("D");
+				insertLast("C");
+				insertLast("B");
+			}
+		})); // should be true because they have the same contents
 	}
 
 }
