@@ -26,7 +26,7 @@ public class TestSList {
 
 	@Test
 	public void testEquals() {
-		assertTrue(myList.equals(sameList));
+		assertTrue(myList.equals(sameList), "Successfully Initialized");
 	}
 
 }
