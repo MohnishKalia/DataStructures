@@ -42,9 +42,7 @@ public class PrefixAverageCalculations {
      *         the time for algorithm 2
      */
     private static long[] computeTimes(int inputSize) throws InterruptedException {
-        double[] values = new double[inputSize];
-        for (int i = 0; i < values.length; i++)
-            values[i] = Math.random() * 50;
+        double[] values = new Random().doubles(inputSize).map(d -> d * 50).toArray();
         // create a double array with length as input size and fill with random doubles [0-50)
         long[] data = new long[3];
         long before, after; // data format initialization
