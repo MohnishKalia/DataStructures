@@ -18,18 +18,18 @@ public class DeQueDLL<T> implements DequeInterface<T> {
 	public void enqueueFront(T element) {
 		DLLNode<T> node = new DLLNode<>(element);
 		node.setForward(front);
-		node = front;
+		front = node;
 		if (rear == null)
-			node = rear;
+			rear = node;
 		numElements++;
 	}
 
 	public void enqueueRear(T element) {
 		DLLNode<T> node = new DLLNode<>(element);
 		node.setBack(rear);
-		node = rear;
+		rear = node;
 		if (front == null)
-			node = front;
+			front = node;
 		numElements++;
 	}
 
@@ -38,6 +38,8 @@ public class DeQueDLL<T> implements DequeInterface<T> {
 			throw new QueueUnderflowException("Dequeue attempted on an empty stack.");
 		T info = front.getInfo();
 		front = front.getForward() == null ? null : (DLLNode<T>) front.getForward();
+		// if (front == null)
+		// 	rear = null;
 		numElements--;
 		return info;
 	}
@@ -47,6 +49,8 @@ public class DeQueDLL<T> implements DequeInterface<T> {
 			throw new QueueUnderflowException("Dequeue attempted on an empty stack.");
 		T info = rear.getInfo();
 		rear = rear.getBack() == null ? null : (DLLNode<T>) rear.getBack();
+		// if (rear == null)
+		// 	front = null;
 		numElements--;
 		return info;
 	}
@@ -74,33 +78,33 @@ public class DeQueDLL<T> implements DequeInterface<T> {
 		return String.join("<=>", elements);
 	}
 
-	/**
-	 * Removes the first occurance of the element in the deque.
-	 * 
-	 * @param element
-	 */
-	public void remove(T element) {
-		DLLNode<T> node = null;
+	// /**
+	// * Removes the first occurance of the element in the deque.
+	// *
+	// * @param element
+	// */
+	// public void remove(T element) {
+	// DLLNode<T> node = null;
 
-		// find the node element
-		while (node != null) {
-			if (node.getInfo().equals(element))
-				break;
-			node = (DLLNode<T>) node.getForward();
-		}
+	// // find the node element
+	// while (node != null) {
+	// if (node.getInfo().equals(element))
+	// break;
+	// node = (DLLNode<T>) node.getForward();
+	// }
 
-		// if its the only element or the front
-		if (numElements == 1 || node.getBack() == null)
-			dequeueFront();
-		// if its the back
-		else if (node.getForward() == null)
-			dequeueRear();
-		// if its intermediate
-		else
-			System.out.println("lol");
-	}
+	// // if its the only element or the front
+	// if (numElements == 1 || node.getBack() == null)
+	// dequeueFront();
+	// // if its the back
+	// else if (node.getForward() == null)
+	// dequeueRear();
+	// // if its intermediate
+	// else
+	// System.out.println("lol");
+	// }
 
-	public void insert(T element){
+	public void insert(T element) {
 		throw new UnsupportedOperationException();
 	}
 

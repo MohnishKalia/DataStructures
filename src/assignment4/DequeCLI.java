@@ -22,22 +22,23 @@ public class DequeCLI {
                     // sort, then create new deque with a lot of enqueueFront
                     elts.add(input.nextInt());
                     Collections.sort(elts);
-                    deque = new DeQueDLL<>();
+                    // deque = new DeQueDLL<Integer>();
                     for (int i : elts)
-                        deque.enqueueFront(i);
+                        deque.enqueueRear(i);
                     break;
                 case 2:
                     System.out.println("Enter the integer you wish to delete from the deque:");
                     elts.remove((Integer) input.nextInt());
-                    deque = new DeQueDLL<>();
+                    // deque = new DeQueDLL<Integer>();
                     for (int i : elts)
-                        deque.enqueueFront(i);
+                        deque.enqueueRear(i);
                     break;
                 case 3:
                     break outer;
                 default:
                     System.out.println("Invalid operation, please choose a listed option.");
                 }
+                
                 System.out.println("Deque: " + deque.toString());
             }
         }
