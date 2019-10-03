@@ -31,11 +31,11 @@ public class ZipFolder {
 
         if (srcFile.isDirectory()) {
             addFolderToZip(rootPath, srcFile, zip);
-        } else {
+        } else if (!srcFile.getAbsolutePath().contains(".zip")){
             byte[] buf = new byte[1024];
             int len;
             try (FileInputStream in = new FileInputStream(srcFile)) {
-                String name = srcFile.getPath();
+                String name = srcFile.getName();
                 System.out.println("Zip " + srcFile + "\n to " + name);
                 zip.putNextEntry(new ZipEntry(name));
                 while ((len = in.read(buf)) > 0) {
