@@ -7,6 +7,9 @@ import java.util.Scanner;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+/**
+ * Zips an entire folder/package for DS. Will be named after the name of the first file in the package.
+ */
 public class ZipFolder {
 
     public static void main(String[] args) throws Exception {
@@ -15,8 +18,9 @@ public class ZipFolder {
             for (var s : new File("src").list())
                 System.out.println("    " + s);
             String folder = input.nextLine();
-            ZipFolder.zipFolder(new File("src/" + folder),
-                    new File(String.format("src/%s/Kalia%s.zip", folder, folder)));
+            File srcFolder = new File("src/" + folder);
+            File destZipFile = new File(srcFolder, String.format("/Kalia%s.zip", srcFolder.list()[0].split("\\.")[0]));
+            ZipFolder.zipFolder(srcFolder, destZipFile);
         }
     }
 
