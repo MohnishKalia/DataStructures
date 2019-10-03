@@ -11,7 +11,7 @@ public class DequeCLI {
             outer: while (true) {
                 // make a list by dequing entirety and inserting
                 ArrayList<Integer> elts = new ArrayList<Integer>();
-                for (int i = 0; i < deque.size(); i++)
+                for (int i = 0, dequeSize = deque.size(); i < dequeSize; i++)
                     elts.add(deque.dequeueFront());
 
                 System.out.println("Choose an operation - 1: Insert, 2: Delete, 3: Exit");
@@ -22,14 +22,12 @@ public class DequeCLI {
                     // sort, then create new deque with a lot of enqueueFront
                     elts.add(input.nextInt());
                     Collections.sort(elts);
-                    // deque = new DeQueDLL<Integer>();
                     for (int i : elts)
                         deque.enqueueRear(i);
                     break;
                 case 2:
                     System.out.println("Enter the integer you wish to delete from the deque:");
                     elts.remove((Integer) input.nextInt());
-                    // deque = new DeQueDLL<Integer>();
                     for (int i : elts)
                         deque.enqueueRear(i);
                     break;
