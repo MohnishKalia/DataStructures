@@ -84,12 +84,20 @@ public class DList<T> {
 		return header == null;
 	}
 
+	/**
+	 * Time complexity is O(1).
+	 */
 	public void removeLast() {
 		if (isEmpty())
 			throw new QueueUnderflowException("Remove attempted on an empty list.");
 		pop();
 	}
 
+	/**
+	 * Time complexity is O(1).
+	 * 
+	 * @return info of the node that was popped
+	 */
 	public T pop() {
 		if (isEmpty())
 			throw new QueueUnderflowException("Pop attempted on an empty list.");
@@ -105,21 +113,26 @@ public class DList<T> {
 		return info;
 	}
 
+	/**
+	 * Time complexity are O(1).
+	 * 
+	 * @param element element to add to the end of the dlist
+	 */
 	public void push(T element) {
 		addToLast(element);
 	}
 
 	public String toString() {
+		if (isEmpty())
+			return "";
 		DLLNode<T> node = header;
 		String result = "";
-		boolean temp = node != null;
 		while (node != null) {
 			result += node.getInfo();
 			result += "<=>";
 			node = (DLLNode<T>) node.getForward();
 		}
-		if(temp)
-			result = result.substring(0, result.length() - 3);
+		result = result.substring(0, result.length() - 3);
 		return result;
 	}
 
