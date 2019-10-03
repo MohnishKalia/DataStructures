@@ -87,6 +87,13 @@ public class DList<T> {
 	public void removeLast() {
 		if (isEmpty())
 			throw new QueueUnderflowException("Remove attempted on an empty list.");
+		pop();
+	}
+
+	public T pop() {
+		if (isEmpty())
+			throw new QueueUnderflowException("Pop attempted on an empty list.");
+		T info = trailer.getInfo();
 		if (trailer.getBack() != null) {
 			trailer = (DLLNode<T>) trailer.getBack();
 			trailer.setForward(null);
@@ -95,13 +102,6 @@ public class DList<T> {
 			trailer = null;
 		}
 		size--;
-	}
-
-	public T pop() {
-		if (isEmpty())
-			throw new QueueUnderflowException("Pop attempted on an empty list.");
-		T info = trailer.getInfo();
-		removeLast();
 		return info;
 	}
 
