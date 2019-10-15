@@ -8,7 +8,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 /**
- * Zips an entire folder/package for DS. Will be named after the name of the first file in the package.
+ * Zips an entire folder/package for DS. Will be named after the name of the
+ * first file in the package.
  */
 public class ZipFolder {
 
@@ -19,7 +20,9 @@ public class ZipFolder {
                 System.out.println("    " + s);
             String folder = input.nextLine();
             File srcFolder = new File("src/" + folder);
-            File destZipFile = new File(srcFolder, String.format("/Kalia%s.zip", srcFolder.list()[0].split("\\.")[0]));
+            System.out.println(
+                    "You are about to zip package " + folder + "\nWhat should the zip file be named? Kalia____.zip");
+            File destZipFile = new File(srcFolder, String.format("/Kalia%s.zip", input.nextLine()));
             ZipFolder.zipFolder(srcFolder, destZipFile);
         }
     }
@@ -35,7 +38,7 @@ public class ZipFolder {
 
         if (srcFile.isDirectory()) {
             addFolderToZip(rootPath, srcFile, zip);
-        } else if (!srcFile.getAbsolutePath().contains(".zip")){
+        } else if (!srcFile.getAbsolutePath().contains(".zip")) {
             byte[] buf = new byte[1024];
             int len;
             try (FileInputStream in = new FileInputStream(srcFile)) {
@@ -55,5 +58,6 @@ public class ZipFolder {
         }
     }
 
-    // should be store the file paths in an list, create a zip file; then for each file, add to the zip. See nio api
+    // should be store the file paths in an list, create a zip file; then for each
+    // file, add to the zip. See nio api
 }
