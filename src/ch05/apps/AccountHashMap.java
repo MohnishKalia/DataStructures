@@ -1,9 +1,14 @@
 package ch05.apps;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * This program demonstrates HashMap
@@ -55,4 +60,62 @@ public class AccountHashMap {
 		for (BankAccount account : values)
 			System.out.println(account.getBalance());
 	}
+
+	/**
+	 * Time complexity is O(n).
+	 */
+	public static String displayAccountsWithEqualBalances(Map<String, BankAccount> accountMap) {
+		Set<Double> balances = new HashSet<>();
+		double sharedValue = Double.MAX_VALUE;
+
+		for (BankAccount ba : accountMap.values()) {
+			sharedValue = ba.getBalance();
+			if (!balances.add(sharedValue))
+				break;
+		}
+
+		final double finVal = sharedValue;
+		Set<String> accounts = accountMap.keySet();
+		accounts.removeIf(key -> !(accountMap.get(key).getBalance() == finVal));
+		String answer = String.format("Account numbers %s with equal balance of %d", accounts.toString(),
+				(int) sharedValue); // casting for the sake of unit testing
+		System.out.println(answer);
+		return answer;
+	}
+
+	@Test
+	public void testEqBal_OneMatch() {
+		Map<String, BankAccount> accountMap = new HashMap<>();
+
+		accountMap.put("101", new BankAccount(1000));
+		accountMap.put("102", new BankAccount(2500));
+		accountMap.put("103", new BankAccount(1000));
+		accountMap.put("104", new BankAccount(3000));
+
+		assertEquals("Account numbers [101, 103] with equal balance of 1000",
+				displayAccountsWithEqualBalances(accountMap));
+	}
+
+	@Test
+	public void testEqBal_AllMatch() {
+		Map<String, BankAccount> accountMap = new HashMap<>();
+
+		accountMap.put("101", new BankAccount(4987));
+		accountMap.put("102", new BankAccount(4987));
+		accountMap.put("103", new BankAccount(4987));
+
+		assertEquals("Account numbers [101, 102, 103] with equal balance of 4987",
+				displayAccountsWithEqualBalances(accountMap));
+	}
+
+	@Test
+	public void testEqBal_NoMatch() {
+		Map<String, BankAccount> accountMap = new HashMap<>();
+
+		accountMap.put("101", new BankAccount(1000));
+		accountMap.put("102", new BankAccount(2500));
+
+		assertEquals("Account numbers [102] with equal balance of 2500", displayAccountsWithEqualBalances(accountMap));
+	}
+
 }
