@@ -24,11 +24,15 @@ public class CollectionTest {
         assertEquals(expected, removeDuplicatesSet(words));
     }
 
-
     private static <T> List<T> removeDuplicatesList(List<T> of) {
         return of.stream().distinct().collect(Collectors.toList());
     }
+
     private static <T> Set<T> removeDuplicatesSet(List<T> of) {
         return of.stream().collect(Collectors.toSet());
+    }
+
+    public static void main(String[] args) {
+
     }
 }
