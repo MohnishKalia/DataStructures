@@ -22,7 +22,7 @@ public class CSInfo
           = new ArrayCollection<FamousPerson>(CAPACITY);
 
     // set up file reading
-    FileReader fin = new FileReader("input/FamousCS.txt");
+    FileReader fin = new FileReader("src/input/FamousCS.txt");
     Scanner info = new Scanner(fin);
     info.useDelimiter("[,\\n]");  // delimiters are commas, line feeds
     
