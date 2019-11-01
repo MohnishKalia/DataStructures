@@ -1,4 +1,4 @@
-package ch05.apps;
+package assignment5;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -14,26 +14,26 @@ import java.util.stream.Stream;
 public class WordFrequency {
     public static void main(String[] args) throws IOException {
         // get the lines from the text, split over whitespace/punctuation and create a
-        // stream of words, map to
+        // stream of words, filter out the empty string, map to
         // lowercase, then count frequency
         Map<String, Long> wFreq = Files.lines(Paths.get("src/ch05/apps/OneLinerProgram.txt"))
-                .flatMap(line -> Stream.of(line.split("[\\s\\p{Punct}]"))).map(String::toLowerCase)
-                .collect(groupingBy(line -> line, counting()));
-        System.out.println(wFreq);
+                .flatMap(line -> Stream.of(line.split("[\\s\\p{Punct}]"))).filter(line -> !line.equals(""))
+                .map(String::toLowerCase).collect(groupingBy(line -> line, counting()));
 
-        System.out.println("==================================================");
-
-        // stream over the entries, sort by the entry value, and collect into a
+        // create a new linkedhashmap to allow mutability, stream over the entries, sort by the entry value, and collect into a
         // linkedhashmap (to preserve order)
         Map<String, Long> sortedList = new LinkedHashMap<>(wFreq).entrySet().stream()
                 .sorted(Map.Entry.comparingByValue())
                 .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (k, v) -> k, LinkedHashMap::new));
         System.out.println(sortedList);
 
+        // use http://www.writewords.org.uk/word_count.asp for frequency check
+
         // System.out.println(new
         // LinkedHashMap<>(Files.lines(Paths.get("src/ch05/apps/OneLinerProgram.txt"))
         // .flatMap(line ->
-        // Stream.of(line.split("[\\s\\p{Punct}]"))).map(String::toLowerCase)
+        // Stream.of(line.split("[\\s\\p{Punct}]"))).filter(line ->
+        // !line.equals("")).map(String::toLowerCase)
         // .collect(groupingBy(line -> line,
         // counting()))).entrySet().stream().sorted(Map.Entry.comparingByValue())
         // .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (k, v) -> k,

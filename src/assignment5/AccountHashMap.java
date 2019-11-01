@@ -1,4 +1,4 @@
-package ch05.apps;
+package assignment5;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
