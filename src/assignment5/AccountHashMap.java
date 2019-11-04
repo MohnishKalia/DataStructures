@@ -97,18 +97,6 @@ public class AccountHashMap {
 	}
 
 	@Test
-	public void testEqBal_AllMatch() {
-		Map<String, BankAccount> accountMap = new HashMap<>();
-
-		accountMap.put("101", new BankAccount(4987));
-		accountMap.put("102", new BankAccount(4987));
-		accountMap.put("103", new BankAccount(4987));
-
-		assertEquals("Account numbers [101, 102, 103] with equal balance of 4987",
-				displayAccountsWithEqualBalances(accountMap));
-	}
-
-	@Test
 	public void testEqBal_MultiMatch() {
 		Map<String, BankAccount> accountMap = new HashMap<>();
 
@@ -121,7 +109,20 @@ public class AccountHashMap {
 		accountMap.put("107", new BankAccount(1234));
 		accountMap.put("108", new BankAccount(3000));
 
-		assertEquals("Account numbers [101, 103, 104, 107] with equal balance of 1234", displayAccountsWithEqualBalances(accountMap));
+		assertEquals("Account numbers [101, 103, 104, 107] with equal balance of 1234",
+				displayAccountsWithEqualBalances(accountMap));
+	}
+
+	@Test
+	public void testEqBal_AllMatch() {
+		Map<String, BankAccount> accountMap = new HashMap<>();
+
+		accountMap.put("101", new BankAccount(4987));
+		accountMap.put("102", new BankAccount(4987));
+		accountMap.put("103", new BankAccount(4987));
+
+		assertEquals("Account numbers [101, 102, 103] with equal balance of 4987",
+				displayAccountsWithEqualBalances(accountMap));
 	}
 
 }
