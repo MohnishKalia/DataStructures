@@ -17,7 +17,7 @@ public class WordFrequency {
         // get the lines from the text, split over whitespace/punctuation and create a
         // stream of words, filter out the empty string, map to
         // lowercase, then count frequency
-        Map<String, Long> wordFreq = Files.lines(Paths.get("src/assignment5/OneLinerProgram.txt"))
+         Map<String, Long> wordFreq = Files.lines(Paths.get("src/assignment5/WordFrequencyTests/OneLinerProgram.txt"))
                 .flatMap(line -> Stream.of(line.split("[\\s\\p{Punct}]"))).filter(line -> !line.equals(""))
                 .map(String::toLowerCase).collect(groupingBy(line -> line, counting()));
 
