@@ -38,15 +38,16 @@ Here is an implementation of an iteration, filter, and collect program in the im
 
 ```[java]
 ArrayList<Student> result = new ArrayList<>();
-  for (Student temp : col)
-      if (temp.getName().length() >= minLength)
-          result.add(temp);
+
+for (Student temp : col)
+    if (temp.getName().length() >= minLength)
+        result.add(temp);
 ```
 
 Here is an example code snippet of a [stream](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/stream/package-summary.html) that does the same thing:
 
 ```[java]
 col.stream()
-          .filter(e -> e.getName().length() >= minLength)
-          .collect(Collectors.toCollection(ArrayList<Student>::new));
+   .filter(e -> e.getName().length() >= minLength)
+   .collect(Collectors.toCollection(ArrayList<Student>::new));
 ```
