@@ -16,7 +16,7 @@ public class ZipFolder {
     public static void main(String[] args) throws Exception {
         try (Scanner input = new Scanner(System.in)) {
             System.out.println("What is the folder you wish to zip?\n\nAvailable Folders:");
-            for (var s : new File("src").list())
+            for (String s : new File("src").list())
                 System.out.println("    " + s);
             String folder = input.nextLine();
             File srcFolder = new File("src/" + folder);
