@@ -1,6 +1,7 @@
 package assignment5;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static java.util.stream.Collectors.*;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -65,22 +66,23 @@ public class AccountHashMap {
 	 * Time complexity is O(n).
 	 */
 	public static String displayAccountsWithEqualBalances(Map<String, BankAccount> accountMap) {
-		Set<Double> balances = new HashSet<>();
-		double sharedValue = Double.MAX_VALUE;
+		// stream over the entries and collect based on shared balances, but map the
+		// entries in the set to just the string key instead of the full entry
+		Map<Double, Set<String>> bankMap = accountMap.entrySet().stream()
+				.collect(groupingBy(entry -> entry.getValue().getBalance(), mapping(Map.Entry::getKey, toSet())));
 
-		for (BankAccount ba : accountMap.values()) {
-			sharedValue = ba.getBalance();
-			if (!balances.add(sharedValue))
-				break;
-		}
+		// create a new set that stores the accounts numbers of the sets with more than
+		// one account (ones with matches)
+		Set<String> matches = new HashSet<>();
+		bankMap.forEach((k, v) -> {
+			if (v.size() > 1)
+				matches.add(String.format("Account numbers %s with equal balance of %d", v, k.intValue()));
+		});
 
-		final double finVal = sharedValue;
-		Set<String> accounts = accountMap.keySet();
-		accounts.removeIf(key -> !(accountMap.get(key).getBalance() == finVal));
-		String answer = String.format("Account numbers %s with equal balance of %d", accounts.toString(),
-				(int) sharedValue); // casting for the sake of unit testing
-		System.out.println(answer);
-		return answer;
+		// concatenate the strings with a slash to separate each equal balance
+		String statement = String.join(" / ", matches);
+		System.out.println(statement);
+		return statement;
 	}
 
 	@Test
@@ -104,12 +106,15 @@ public class AccountHashMap {
 		accountMap.put("102", new BankAccount(2500));
 		accountMap.put("103", new BankAccount(1234));
 		accountMap.put("104", new BankAccount(1234));
-		accountMap.put("105", new BankAccount(1000));
+		accountMap.put("105", new BankAccount(2500));
 		accountMap.put("106", new BankAccount(6304));
 		accountMap.put("107", new BankAccount(1234));
-		accountMap.put("108", new BankAccount(3000));
+		accountMap.put("108", new BankAccount(6304));
+		accountMap.put("109", new BankAccount(1101));
+		accountMap.put("110", new BankAccount(2202));
 
-		assertEquals("Account numbers [101, 103, 104, 107] with equal balance of 1234",
+		assertEquals(
+				"Account numbers [102, 105] with equal balance of 2500 / Account numbers [101, 103, 104, 107] with equal balance of 1234 / Account numbers [106, 108] with equal balance of 6304",
 				displayAccountsWithEqualBalances(accountMap));
 	}
 
@@ -120,8 +125,10 @@ public class AccountHashMap {
 		accountMap.put("101", new BankAccount(4987));
 		accountMap.put("102", new BankAccount(4987));
 		accountMap.put("103", new BankAccount(4987));
+		accountMap.put("104", new BankAccount(4987));
+		accountMap.put("105", new BankAccount(4987));
 
-		assertEquals("Account numbers [101, 102, 103] with equal balance of 4987",
+		assertEquals("Account numbers [101, 102, 103, 104, 105] with equal balance of 4987",
 				displayAccountsWithEqualBalances(accountMap));
 	}
 
