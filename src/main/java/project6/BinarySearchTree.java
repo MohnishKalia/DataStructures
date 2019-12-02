@@ -352,7 +352,10 @@ public class BinarySearchTree<T> implements BSTInterface<T> {
      * 
      * Ex: For a binary tree below, the paths would be as follows:
      * 
-     * 5, 4, 11, 7 5, 4, 11, 2 5, 8, 13 5, 8, 4, 1
+     * 5, 4, 11, 7 
+     * 5, 4, 11, 2 
+     * 5, 8, 13 
+     * 5, 8, 4, 1
      * 
      * When testing each method, print a message to the screen such as “******
      * Testing getSecondLargest() method ********
