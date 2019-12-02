@@ -1,0 +1,6 @@
+John 35 male
+Sally 28 female
+Megan 55 female
+Megan 22 female
+Sally 18 female
+Megan 19 female
