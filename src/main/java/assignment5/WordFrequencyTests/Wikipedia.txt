@@ -1,0 +1,10 @@
+Wikipedia is a multilingual online encyclopedia created and maintained as an open collaboration project by a community of volunteer editors using a wiki-based editing system. 
+It is the largest and most popular general reference work on the World Wide Web, and is one of the most popular websites ranked by Alexa as of October 2019. 
+It features exclusively free content and no commercial ads, and is owned and supported by the Wikimedia Foundation, a non-profit organization funded primarily through donations.
+Wikipedia was launched on January 15, 2001, by Jimmy Wales and Larry Sanger. 
+Sanger coined its name, as a portmanteau of "wiki" (the Hawaiian word for "quick") and "encyclopedia". 
+Initially an English-language encyclopedia, versions in other languages were quickly developed. 
+With at least 5,964,829 articles, the English Wikipedia is the largest of the more than 290 Wikipedia encyclopedias. 
+Overall, Wikipedia comprises more than 40 million articles in 301 different languages and by February 2014 it had reached 18 billion page views and nearly 500 million unique visitors per month.
+In 2005, Nature published a peer review comparing 42 hard science articles from Encyclopædia Britannica and Wikipedia and found that Wikipedia's level of accuracy approached that of Britannica, although critics suggested that it might not have fared so well in a similar study of a random sampling of all articles or one focused on social science or contentious social issues. 
+The following year, Time magazine stated that the open-door policy of allowing anyone to edit had made Wikipedia the biggest and possibly the best encyclopedia in the world, and was a testament to the vision of Jimmy Wales.

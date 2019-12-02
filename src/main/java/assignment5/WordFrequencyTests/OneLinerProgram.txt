@@ -1,0 +1,13 @@
+The concept of a one-liner program has been known since the 1960s with the release of the APL programming language.
+With its terse syntax and powerful mathematical operators, APL allowed useful programs to be represented in a few symbols.
+In the 1970s, one-liners became associated with the rise of the home computer and BASIC. Computer magazines published type-in programs in many dialects of BASIC.
+Some magazines devoted regular columns solely to impressive short and one-line programs.
+The word One-liner also has two references in the index of the book The AWK Programming Language.
+It explains the programming language AWK, which is part of the Unix operating system.
+The authors explain the birth of the one-liner paradigm with their daily work on early Unix machines:
+The 1977 version had only a few built-in variables and predefined functions.
+It was designed for writing short programs. Our model was that an invocation would be one or two lines long, typed in and used immediately.
+Defaults were chosen to match this style. We, being the authors, knew how the language was supposed to be used, and so we only wrote one-liners.
+Notice that this original definition of a one-liner implies immediate execution of the program without any compilation.
+So, in a strict sense, only source code for interpreted languages qualifies as a one-liner.
+But this strict understanding of a one-liner was broadened in 1985 when the IOCCC introduced the category of Best One Liner for C, which is a compiled language.
