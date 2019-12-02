@@ -332,12 +332,16 @@ public class BinarySearchTree<T> implements BSTInterface<T> {
      * Write an algorithm that returns the second largest value for a binary search
      * tree containing at least two nodes. Assume the binary search tree does not
      * allow duplicates. Give the time complexity of your algorithm. <blockquote>
-     * The second largest value will be the getRight of the parent node of the
-     * largest element. Time complexity is O(1). </blockquote>
+     * The second largest value will be the parent node of the
+     * largest element. Time complexity is O(n). </blockquote>
      */
     public T getSecondLargest() {
-        Iterator<T> inorder = getIterator(BSTInterface.Traversal.Inorder);
-        return null;
+        if (isEmpty())
+            return null;
+        BSTNode<T> node = root;
+        while (node.getRight().getRight() != null)
+            node = node.getRight();
+        return node.getInfo();
     }
 
     /**
@@ -348,10 +352,7 @@ public class BinarySearchTree<T> implements BSTInterface<T> {
      * 
      * Ex: For a binary tree below, the paths would be as follows:
      * 
-     * 5, 4, 11, 7 
-     * 5, 4, 11, 2 
-     * 5, 8, 13 
-     * 5, 8, 4, 1
+     * 5, 4, 11, 7 5, 4, 11, 2 5, 8, 13 5, 8, 4, 1
      * 
      * When testing each method, print a message to the screen such as “******
      * Testing getSecondLargest() method ********
