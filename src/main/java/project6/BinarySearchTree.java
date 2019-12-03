@@ -380,4 +380,16 @@ public class BinarySearchTree<T> implements BSTInterface<T> {
         // print out all the lines
         lines.forEach(line -> System.out.println(line.toString().substring(1, line.toString().length())));
     }
+
+    public void printPaths2() {
+        BSTNode<T> current = root;
+        while (current.getLeft() != null) {
+            System.out.print(current.getLeft().getInfo() + ", ");
+            BSTNode<T> right = current;
+            while(current.getRight() != null){
+                System.out.print(current.getRight().getInfo() + ", ");
+            }
+            System.out.print("\n");
+        }
+    }
 }
