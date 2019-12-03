@@ -16,10 +16,10 @@ public class ZipFolder {
     public static void main(String[] args) throws Exception {
         try (Scanner input = new Scanner(System.in)) {
             System.out.println("What is the folder you wish to zip?\n\nAvailable Folders:");
-            for (String s : new File("src").list())
+            for (String s : new File("src/main/java").list())
                 System.out.println("    " + s);
             String folder = input.nextLine();
-            File srcFolder = new File("src/" + folder);
+            File srcFolder = new File("src/main/java/" + folder);
             System.out.println(
                     "You are about to zip package " + folder + "\nWhat should the zip file be named? Kalia____.zip");
             File destZipFile = new File(srcFolder, String.format("/Kalia%s.zip", input.nextLine()));

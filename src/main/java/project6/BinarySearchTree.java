@@ -337,7 +337,7 @@ public class BinarySearchTree<T> implements BSTInterface<T> {
      * tree containing at least two nodes. Assume the binary search tree does not
      * allow duplicates. Give the time complexity of your algorithm. <blockquote>
      * The second largest value will be the parent node of the largest element. Time
-     * complexity is O(n). </blockquote>
+     * complexity is O(height). </blockquote>
      */
     public T getSecondLargest() {
         // don't bother if there is nothing
