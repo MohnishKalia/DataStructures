@@ -24,6 +24,8 @@ public class BSTTest {
         System.setOut(new PrintStream(outContent));
     }
 
+    // getSecondLargest()
+
     @Test
     public void testGetSecondLargest_Empty() {
         assertEquals(null, tree.getSecondLargest());
@@ -46,6 +48,8 @@ public class BSTTest {
         addAllToBST(givenCase);
         assertEquals(11, tree.getSecondLargest());
     }
+
+    // printPaths()
 
     @Test
     public void testPrintPaths_Empty() {
@@ -85,6 +89,78 @@ public class BSTTest {
         tree.printPaths();
 
         String expected = "5, 4, 2, 1\n5, 8, 7\n5, 8, 11, 13\n";
+        String actual = outContent.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    // empty
+
+    @Test
+    public void testGetLeftMostDescendant_Empty() {
+        assertEquals(null, tree.getLeftMostDescendant());
+    }
+
+    @Test
+    public void testGetRightMostDescendant_Empty() {
+        assertEquals(null, tree.getRightMostDescendant());
+    }
+
+    @Test
+    public void testPrintLeaves_Empty() {
+        tree.printLeaves();
+
+        String expected = "";
+        String actual = outContent.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    // given case
+
+    @Test
+    public void testGetLeftMostDescendant_GivenCase() {
+        addAllToBST(givenCase);
+        assertEquals(1, tree.getLeftMostDescendant());
+    }
+
+    @Test
+    public void testGetRightMostDescendant_GivenCase() {
+        addAllToBST(givenCase);
+        assertEquals(13, tree.getRightMostDescendant());
+    }
+
+    @Test
+    public void testPrintLeaves_GivenCase() {
+        addAllToBST(givenCase);
+        tree.printLeaves();
+
+        String expected = "1\n7\n13\n";
+        String actual = outContent.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    // sequential
+
+    @Test
+    public void testGetLeftMostDescendant_Sequential() {
+        addAllToBST(sequential);
+        assertEquals(1, tree.getLeftMostDescendant());
+    }
+
+    @Test
+    public void testGetRightMostDescendant_Sequential() {
+        addAllToBST(sequential);
+        assertEquals(6, tree.getRightMostDescendant());
+    }
+
+    @Test
+    public void testPrintLeaves_Sequential() {
+        addAllToBST(sequential);
+        tree.printLeaves();
+
+        String expected = "6\n";
         String actual = outContent.toString();
 
         assertEquals(expected, actual);

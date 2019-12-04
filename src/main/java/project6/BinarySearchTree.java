@@ -332,6 +332,45 @@ public class BinarySearchTree<T> implements BSTInterface<T> {
         }
     }
 
+    public T getLeftMostDescendant() {
+        if (isEmpty())
+            return null;
+        BSTNode<T> left = root;
+        while (left.getLeft() != null)
+            left = left.getLeft();
+        return left.getInfo();
+    }
+
+    public T getRightMostDescendant() {
+        if (isEmpty())
+            return null;
+        BSTNode<T> right = root;
+        while (right.getRight() != null)
+            right = right.getRight();
+        return right.getInfo();
+    }
+
+    /**
+     * Time complexity is O(n).
+     */
+    public void printLeaves() {
+        printLeaves(root);
+    }
+
+    private void printLeaves(BSTNode<T> node) {
+        // if the current node is null ("child" of leaf), stop recursion
+        if (node == null)
+            return;
+        // if the current node is a leaf, print the accumulated recursive list
+        if (node.getLeft() == null && node.getRight() == null) {
+            System.out.print(node.getInfo() + "\n");
+            return;
+        }
+        // recursively get left and right
+        printLeaves(node.getLeft());
+        printLeaves(node.getRight());
+    }
+
     /**
      * Write an algorithm that returns the second largest value for a binary search
      * tree containing at least two nodes. Assume the binary search tree does not
@@ -341,14 +380,16 @@ public class BinarySearchTree<T> implements BSTInterface<T> {
      */
     public T getSecondLargest() {
         // don't bother if there is nothing
-        if (isEmpty()) return null;
+        if (isEmpty())
+            return null;
         // find parent of rightmost node
         BSTNode<T> node = root;
         while (node.getRight().getRight() != null)
             node = node.getRight();
         // if the rightmost node has a left, return that
         BSTNode<T> left = node.getRight().getLeft();
-        if (left != null) return left.getInfo();
+        if (left != null)
+            return left.getInfo();
         // else return the parent of the rightmost node
         return node.getInfo();
     }
@@ -365,7 +406,8 @@ public class BinarySearchTree<T> implements BSTInterface<T> {
 
     private void printPaths(BSTNode<T> node, ArrayList<T> path) {
         // if the current node is null ("child" of leaf), stop recursion
-        if (node == null) return;
+        if (node == null)
+            return;
         // start with the root node for each line
         path.add(node.getInfo());
         // if the current node is a leaf, print the accumulated recursive list
