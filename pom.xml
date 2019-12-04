@@ -16,6 +16,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>12</maven.compiler.release>
     <junit.jupiter.version>5.5.2</junit.jupiter.version>
+    <guava.version>28.1-jre</guava.version>
+    <commons.io.version>2.6</commons.io.version>
   </properties>
 
   <dependencies>
@@ -24,6 +26,16 @@
 			<artifactId>junit-jupiter</artifactId>
 			<version>${junit.jupiter.version}</version>
 		</dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commons.io.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
