@@ -1,5 +1,7 @@
 
-# Welcome to the repository of code for Data Structures at Marquette University
+# Data Structures
+
+## Welcome to the repository of code for Data Structures at Marquette University
 
 In plain terms, this repo contains the work I have done for the DS course @ MU
 
