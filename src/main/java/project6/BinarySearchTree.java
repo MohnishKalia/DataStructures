@@ -7,10 +7,14 @@
 
 package project6;
 
-import java.util.*; // Iterator, Comparator
+// Iterator, Comparator
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
-import ch04.queues.*;
-import ch02.stacks.*;
+import ch02.stacks.LinkedStack;
+import ch04.queues.LinkedQueue;
 import support.BSTNode;
 
 public class BinarySearchTree<T> implements BSTInterface<T> {
@@ -328,19 +332,65 @@ public class BinarySearchTree<T> implements BSTInterface<T> {
         }
     }
 
+    public T getLeftMostDescendant() {
+        if (isEmpty())
+            return null;
+        BSTNode<T> left = root;
+        while (left.getLeft() != null)
+            left = left.getLeft();
+        return left.getInfo();
+    }
+
+    public T getRightMostDescendant() {
+        if (isEmpty())
+            return null;
+        BSTNode<T> right = root;
+        while (right.getRight() != null)
+            right = right.getRight();
+        return right.getInfo();
+    }
+
+    /**
+     * Time complexity is O(n).
+     */
+    public void printLeaves() {
+        printLeaves(root);
+    }
+
+    private void printLeaves(BSTNode<T> node) {
+        // if the current node is null ("child" of leaf), stop recursion
+        if (node == null)
+            return;
+        // if the current node is a leaf, print the accumulated recursive list
+        if (node.getLeft() == null && node.getRight() == null) {
+            System.out.print(node.getInfo() + "\n");
+            return;
+        }
+        // recursively get left and right
+        printLeaves(node.getLeft());
+        printLeaves(node.getRight());
+    }
+
     /**
      * Write an algorithm that returns the second largest value for a binary search
      * tree containing at least two nodes. Assume the binary search tree does not
      * allow duplicates. Give the time complexity of your algorithm. <blockquote>
-     * The second largest value will be the parent node of the
-     * largest element. Time complexity is O(n). </blockquote>
+     * The second largest value will be the parent node of the largest element. Time
+     * complexity is O(height). </blockquote>
      */
     public T getSecondLargest() {
+        // don't bother if there is nothing
         if (isEmpty())
             return null;
+        // find parent of rightmost node
         BSTNode<T> node = root;
         while (node.getRight().getRight() != null)
             node = node.getRight();
+        // if the rightmost node has a left, return that
+        BSTNode<T> left = node.getRight().getLeft();
+        if (left != null)
+            return left.getInfo();
+        // else return the parent of the rightmost node
         return node.getInfo();
     }
 
@@ -349,35 +399,26 @@ public class BinarySearchTree<T> implements BSTInterface<T> {
      * leaves paths. The signature of the method will be as follows: public void
      * printPaths(){…}. The method should print each path on a separate line where
      * info on each node is separated by comma.
-     * 
-     * Ex: For a binary tree below, the paths would be as follows:
-     * 
-     * 5, 4, 11, 7 
-     * 5, 4, 11, 2 
-     * 5, 8, 13 
-     * 5, 8, 4, 1
-     * 
-     * When testing each method, print a message to the screen such as “******
-     * Testing getSecondLargest() method ********
-     * 
-     * If a certain method does not work as expected then still include that method
-     * to your testing and print a message to the screen that method is not fully
-     * functional.
      */
     public void printPaths() {
-        // Initialize the data structures
-        List<List<BSTNode<T>>> lines = new ArrayList<>();
-        List<BSTNode<T>> path;
-        // loop here
-        for (int i = 0; Math.random() > 0.2; i++) {
-            path = new ArrayList<>();
-            path.add(null);
-            // if no more
-            if (true) {
-                lines.add(path);
-            }
-        }
-        // print out all the lines
-        lines.forEach(line -> System.out.println(line.toString().substring(1, line.toString().length())));
+        printPaths(root, new ArrayList<T>());
     }
+
+    private void printPaths(BSTNode<T> node, ArrayList<T> path) {
+        // if the current node is null ("child" of leaf), stop recursion
+        if (node == null)
+            return;
+        // start with the root node for each line
+        path.add(node.getInfo());
+        // if the current node is a leaf, print the accumulated recursive list
+        if (node.getLeft() == null && node.getRight() == null) {
+            String temp = path.toString();
+            System.out.print(temp.substring(1, temp.length() - 1) + "\n");
+            return;
+        }
+        // recursively get left and right
+        printPaths(node.getLeft(), new ArrayList<>(path));
+        printPaths(node.getRight(), new ArrayList<>(path));
+    }
+
 }
